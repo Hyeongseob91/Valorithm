@@ -6,6 +6,8 @@ from typing import TypedDict, Annotated
 from langchain_core.runnables import RunnablePassthrough, RunnableMap, RunnableLambda
 from langchain_core.output_parsers import StrOutputParser
 from langgraph.graph import StateGraph, START, END
+from ragas import evaluate
+from ragas.metrics import faithfulness, answer_relevancy, context_precision, context_recall
 
 # .env 파일에서 환경 변수 로드
 load_dotenv()
@@ -66,19 +68,36 @@ def answer_node(state: MyState) -> MyState:
     
     return {"answer": answer}
 
-# Evaluate Node(추가예정)
+# Evaluate Node
+def relevance_node(answer):
+    """
+    생성된 context가 질문에 맞는 문장인지 확인하는 함수입니다.
+    """
+    dataset = answer
+    result = evaluate(
+    dataset=dataset,
+    metrics=[
+        context_precision,
+        context_recall,
+        answer_relevancy,
+        faithfulness
+    ]
+)
+    return result
 
 # StateGraph 인스턴스 생성
 graph = StateGraph(MyState)
 
 # Node Define
 graph.add_node("retirever", retrieve_node)
-graph.add_node("Answer", answer_node)
+graph.add_node("answer", answer_node)
+graph.add_node("relevance", relevance_node)
 
 # Edge Define
 graph.add_edge(START, "retriever")          # Set Entry Point
 graph.add_edge("retriever", "answer")       # 질문 검색 -> 답변
-graph.add_edge("answer", END)               # 답변 -> 종료
+graph.add_edge("answer", "relevance")       # 질문 검색 -> 답변
+graph.add_edge("relevance", END)               # 답변 -> 종료
 
 # Compile
 app = graph.compile()
