@@ -22,7 +22,7 @@ AI 기술이 프로젝트 기획부터 개발, 플레이 환경 전반에 걸쳐
 - 🛠️**기능.3** : 프로젝트 개발 과정에서, **2D 이미지 한장을 3D Mesh 맵으로 변경 생성**해주는 Web Server 기반의 AI Tool
 - 🎮**기능.4** : 프로젝트 사용 과정에서, 유저를 위한 게임 규칙, 설정의 이해를 돕는 **LangGraph 기반의 AI Agent "Javis"**
 
-- <a href="https://www.canva.com/design/DAGoyIL-jV0/1PR38idDAum69dSoPE7bJQ/view?utm_content=DAGoyIL-jV0&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hc39e7a520b">프로젝트 프레젠테이션 자료</a>
+- <a href="https://www.canva.com/design/DAGpKAs1L98/f8KcXvSaPgYJqDCTP_MPaA/view?utm_content=DAGpKAs1L98&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h1eb8415669">프로젝트 프레젠테이션 자료</a>
 
 ---
 
